@@ -24,7 +24,7 @@ class SocketService with ChangeNotifier{
 
   void _initConfig(){
 
-    this._socket = IO.io('http://localhost:3000/',{
+    this._socket = IO.io('https://servidor-flutter.herokuapp.com/',{
    // IO.Socket socket = IO.io('http://192.168.0.10::3000/' 10.0.2.2){
       'transports': ['websocket'],
       'autoConnect':true,
@@ -36,7 +36,7 @@ class SocketService with ChangeNotifier{
     });
 
     this._socket.on('disconnect', (_) {
-      this._serverStatus = ServerStatus.Online;
+      this._serverStatus = ServerStatus.Offline;
       notifyListeners();
     });
 

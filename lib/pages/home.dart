@@ -31,12 +31,12 @@ List<Band> bands = [];
       setState(() {});
   }
   //Para hacer la limpieza de un evento, es decir para dejar de escuchar algun evento
-  // @override
-  // void dispose(){
-  //   final socketService = Provider.of<SocketService>(context, listen: false);
-  //   socketService.socket.off('active-bands');
-  //   super.dispose();
-  // }
+  @override
+  void dispose(){
+    final socketService = Provider.of<SocketService>(context, listen: false);
+    socketService.socket.off('active-bands');
+     super.dispose();
+  }
 
   Widget build(BuildContext context) {
 
@@ -107,6 +107,7 @@ List<Band> bands = [];
     final textController = new TextEditingController();
 
     if(Platform.isAndroid){
+      //Android
       showDialog(
         context: context,
         builder: ( _ ) => AlertDialog(
@@ -181,14 +182,14 @@ List<Band> bands = [];
     width: double.infinity,
     height: 200,
     child: PieChart(
-       dataMap: dataMap,
+      dataMap: dataMap,
       animationDuration: Duration(milliseconds: 800),
       colorList: colorList,
-      chartType: ChartType.disc,
+      chartType: ChartType.ring,
       legendOptions: LegendOptions(
+        showLegends: true,
         showLegendsInRow: false,
         legendPosition: LegendPosition.right,
-        showLegends: true,
         legendTextStyle: TextStyle(
           fontWeight: FontWeight.bold,
         ),
